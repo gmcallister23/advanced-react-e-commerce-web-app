@@ -43,7 +43,7 @@ const Home: React.FC = () => {
 
     return (
         <div>
-            <select>
+            <select onChange={(e) => }>
                 <option value=''> All Categories</option>
                 {categories?.data.map((category:Category) => (
                     <option value={category} key={category}>
