@@ -30,6 +30,15 @@ const Home: React.FC = () => {
         queryFn: fetchCategories,
     }); 
 
+    const getFilteredProducts = () => {
+        if(selectedCategory) {
+            return products.filter((product:Product) => product.category === selectedCategory);
+        }
+        return products;
+    };
+
+    const filteredProducts = getFilteredProducts();
+
 
     // useEffect(() => {
     //     const fetchProducts = async() => {
@@ -43,9 +52,12 @@ const Home: React.FC = () => {
 
     return (
         <div>
-            <select onChange={(e) => }>
+            <select onChange={(e) => 
+                dispatch({type: 'SET_SELECTED_CATEGORY', payload: e.target.value}) 
+                }
+                >
                 <option value=''> All Categories</option>
-                {categories?.data.map((category:Category) => (
+                {categories?.data.map((category: Category) => (
                     <option value={category} key={category}>
                         {category}
                     </option>
@@ -56,7 +68,7 @@ const Home: React.FC = () => {
            {isLoading && (<h1>Loading...</h1>)}
             
             <div className="d-flex flex-wrap p-2 justify-content-center">
-        {products.map((product: Product) => (
+            {filteredProducts.map((product: Product) => (
             <ProductCard product={product} key={product.id} />
         ))}
      </div>
