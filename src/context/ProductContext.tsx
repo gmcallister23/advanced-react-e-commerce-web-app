@@ -12,7 +12,7 @@ interface ProductState {
 
 const initialState: ProductState = {
     products: [],
-    selectedCategory: '',
+    selectedCategory: "",
 }
 
 //Reducer Function

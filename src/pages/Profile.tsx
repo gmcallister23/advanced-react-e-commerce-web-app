@@ -1,11 +1,21 @@
 import type React from "react";
+import { useProductContext } from "../context/ProductContext";
+import type { Product } from "../types/types";
 
 const Profile: React.FC = () => {
-    return (
-        <>
-            <h1>Profile</h1>
-        </>
-    )
-}
 
+    const {products, selectedCategory, dispatch} = useProductContext();
+
+    return (
+        <div>
+            {products.map((product:Product)=> (
+            <h1>
+                {product.title}
+            </h1>
+        ))}
+        <h1>Hello</h1>
+        </div>
+    );
+
+};
 export default Profile;
