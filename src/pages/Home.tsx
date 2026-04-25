@@ -55,6 +55,7 @@ const Home: React.FC = () => {
             <select onChange={(e) => 
                 dispatch({type: 'SET_SELECTED_CATEGORY', payload: e.target.value}) 
                 }
+                value={selectedCategory}
                 >
                 <option value=''> All Categories</option>
                 {categories?.data.map((category: Category) => (
@@ -64,6 +65,9 @@ const Home: React.FC = () => {
                 ))}
             </select>
             
+            <button className='btn' onClick={() => dispatch({type: "SET_SELECTED_CATEGORY", payload: ''})}>
+                Clear Filter
+            </button>
             <button onClick={() => navigate('/profile')}>Go to Profile Page</button>
            {isLoading && (<h1>Loading...</h1>)}
             
