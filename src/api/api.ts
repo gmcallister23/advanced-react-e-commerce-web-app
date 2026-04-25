@@ -8,5 +8,5 @@ const apiClient = axios.create({
 
 export const fetchProducts = ():Promise<AxiosResponse<Product[]>> => apiClient.get<Product[]>('/products')
 
-export const fetchCategories = ():Promise<AxiosResponse<Category[]>> => apiClient.get<Category[]>('/product/categories')
+export const fetchCategories = ():Promise<AxiosResponse<Category[]>> => apiClient.get<Category[]>('/products/categories')
 

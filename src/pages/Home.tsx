@@ -12,7 +12,7 @@ const Home: React.FC = () => {
     
     const navigate = useNavigate()
     //const [products, setProducts] = useState<Product[]>([]);
-    const {products, dispatch, selectedCategory} = useProductContext()
+    const {products, dispatch, selectedCategory} = useProductContext();
     
     const { data: productsData, isLoading }  = useQuery({
         queryKey: ['products'],
