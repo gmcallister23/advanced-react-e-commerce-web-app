@@ -4,7 +4,7 @@ type Props = {
     item: CartItem;
 };
 
-const CartItem = ({item}: Props) => {
+const CartItemComponent = ({item}: Props) => {
     return (
         <div>
             <img>{item.image}</img>
@@ -14,3 +14,5 @@ const CartItem = ({item}: Props) => {
         </div>
     )
 }
+
+export default CartItemComponent;

@@ -4,6 +4,7 @@ import Profile from "./pages/Profile";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ProductProvider } from "./context/ProductContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Cart from "./pages/Cart";
 
 function App() {
   
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path='/' element = {<Home />} />
             <Route path='/profile' element = {<Profile />} />
+            <Route path='/cart' element = {<Cart />} />
           </Routes>
         </BrowserRouter>
       </ProductProvider>
