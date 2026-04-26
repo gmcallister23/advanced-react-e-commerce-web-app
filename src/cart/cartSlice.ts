@@ -17,20 +17,31 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addItem: (state, action: PayloadAction<CartItem>) => {
-            const newItem = action.payload;
+            console.log("REDUCER HIT", action.payload);
 
-            const existingItem = state.items.find(item => item.id === newItem.id)
+            return {
+                cart: {
+                    items: [action.payload],
+                    totalQuantity: 1,
+                },
+            };
+            //state.items.push(action.payload);
 
-            state.totalQuantity ++;
+            //state.totalQuantity++;
+            //const newItem = action.payload;
 
-            if(!existingItem) {
-                state.items.push({ ...newItem, quantity: 1})
-            } else {
-                existingItem.quantity++;
-            }
+            //const existingItem = state.items.find(item => item.id === newItem.id)
+
+            //state.totalQuantity ++;
+
+            //if(!existingItem) {
+               // state.items.push(newItem)
+            //} else {
+            //    existingItem.quantity++;
+            //}
         }
         
-    }
+     }
 })
 
 export const { addItem } = cartSlice.actions;

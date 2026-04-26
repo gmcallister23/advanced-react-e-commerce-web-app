@@ -7,7 +7,7 @@ type Props = {
 const CartItemComponent = ({item}: Props) => {
     return (
         <div>
-            <img>{item.image}</img>
+            <img src={item.image} alt={item.title} />
             <h3>{item.title}</h3>
             <p>${item.price}</p>
             <p>Qty: {item.quantity}</p>

@@ -24,9 +24,11 @@ const ProductCard: React.FC<{product: Product}> = ({product}) => {
         <img src={product.image} alt={product.title} className="w-25 "/>
         <h5>${product.price}</h5>
         <h5 className="bg-secondary-subtle p-2 border rounded">{product.category.toUpperCase()}</h5>
-        return <Rating style={{ maxWidth: 250 }} value={product.rating.rate} readOnly />
+        <Rating style={{ maxWidth: 250 }} value={product.rating.rate} readOnly />
         <p>{product.description}</p>
-        <button onClick={() => dispatch(addItem(toCartItem(product)))}>Add to Cart</button>
+        <button onClick={() => {console.log("Added to cart", product);
+        console.log("CART ITEM BEING SENT", toCartItem(product))
+        dispatch(addItem(toCartItem(product)))}}>Add to Cart</button>
     </div>
   )
 }
