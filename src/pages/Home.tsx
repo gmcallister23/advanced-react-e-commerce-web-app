@@ -70,6 +70,7 @@ const Home: React.FC = () => {
             </button>
             <button onClick={() => navigate('/profile')}>Go to Profile Page</button>
            {isLoading && (<h1>Loading...</h1>)}
+           <button onClick={() => navigate('/cart')}>Cart</button>
             
             <div className="d-flex flex-wrap p-2 justify-content-center">
             {filteredProducts.map((product: Product) => (
