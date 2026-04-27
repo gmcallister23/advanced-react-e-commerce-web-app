@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchProducts } from '../api/api';
 import { fetchCategories } from '../api/api';
+import NavBar from '../components/NavBar';
 
 const Home: React.FC = () => {
 
@@ -51,7 +52,12 @@ const Home: React.FC = () => {
     // }, [dispatch]);
 
     return (
+        
         <div>
+            
+        <nav>
+            <NavBar />
+        </nav>
             <select onChange={(e) => 
                 dispatch({type: 'SET_SELECTED_CATEGORY', payload: e.target.value}) 
                 }
