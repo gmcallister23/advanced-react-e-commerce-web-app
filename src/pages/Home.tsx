@@ -26,11 +26,6 @@ const Home: React.FC = () => {
         dispatch({ type: 'SET_PRODUCTS', payload: productsData.data })
     }, [dispatch, productsData]);
 
-    const { data: categories } = useQuery({
-        queryKey: ['categories'],
-        queryFn: fetchCategories,
-    }); 
-
     const getFilteredProducts = () => {
         if(selectedCategory) {
             return products.filter((product:Product) => product.category === selectedCategory);
@@ -58,25 +53,14 @@ const Home: React.FC = () => {
         <nav>
             <NavBar />
         </nav>
-            <select onChange={(e) => 
-                dispatch({type: 'SET_SELECTED_CATEGORY', payload: e.target.value}) 
-                }
-                value={selectedCategory}
-                >
-                <option value=''> All Categories</option>
-                {categories?.data.map((category: Category) => (
-                    <option value={category} key={category}>
-                        {category}
-                    </option>
-                ))}
-            </select>
             
-            <button className='btn' onClick={() => dispatch({type: "SET_SELECTED_CATEGORY", payload: ''})}>
-                Clear Filter
-            </button>
+            {/* 
             <button onClick={() => navigate('/profile')}>Go to Profile Page</button>
-           {isLoading && (<h1>Loading...</h1>)}
-           <button onClick={() => navigate('/cart')}>Cart</button>
+            {isLoading && (<h1>Loading...</h1>)}
+            <button onClick={() => navigate('/cart')}>Cart</button>
+            ***Moved to navbar, not needed anymore***
+            */}
+            
             
             <div className="d-flex flex-wrap p-2 justify-content-center">
             {filteredProducts.map((product: Product) => (

@@ -1,6 +1,7 @@
 import type React from "react";
 import { useProductContext } from "../context/ProductContext";
 import type { Product } from "../types/types";
+import NavBar from "../components/NavBar";
 
 const Profile: React.FC = () => {
 
@@ -8,6 +9,9 @@ const Profile: React.FC = () => {
 
     return (
         <div>
+            
+            <NavBar />
+            
             {products.map((product:Product)=> (
             <h1>
                 {product.title}
