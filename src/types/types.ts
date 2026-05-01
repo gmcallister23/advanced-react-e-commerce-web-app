@@ -19,4 +19,8 @@ export interface CartItem {
         image: string,
 }
 
+export type CheckoutStep =
+    "confirm" | "success";
+
+
 export type Category = string;

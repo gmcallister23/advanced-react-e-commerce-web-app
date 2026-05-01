@@ -3,6 +3,9 @@ import type { RootState } from '../store/store';
 import CartItemComponent from '../components/CartItem';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
+import CheckoutModal from '../components/modals/ConfirmPurchase';
+import { useState } from 'react';
+import type { CheckoutStep } from '../types/types';
 
 
 
@@ -18,6 +21,10 @@ const Cart = () => {
     const totalQuantity = items.reduce(
         (sum, item) => sum + item.quantity, 0
     );
+
+    const [showModal, setShowModal] = useState(false);
+    const [step, setStep] = useState<CheckoutStep>("confirm");
+
     return (
        
         <div>
@@ -29,6 +36,18 @@ const Cart = () => {
             {items.map(item => (
                 <CartItemComponent key={item.id} item={item} />
             ))}
+
+            <button onClick={() => {
+                setStep("confirm");
+                setShowModal(true);
+            }} >Check Out</button>
+
+            <CheckoutModal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            step={step}
+            setStep={setStep}
+            />
         </div>
         
     )
