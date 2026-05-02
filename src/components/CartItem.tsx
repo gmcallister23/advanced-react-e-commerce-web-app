@@ -10,6 +10,7 @@ type Props = {
 const CartItemComponent = ({item}: Props) => {
     const dispatch = useDispatch();
     //const { dispatch } = useProductContext();
+    const subTotal = item.price * item.quantity;
 
     return (
         <div className="d-flex p-3 justify-content-around align-items-end border border-dark rounded bg-secondary-subtle">
@@ -23,6 +24,7 @@ const CartItemComponent = ({item}: Props) => {
             <button onClick={() => dispatch(decrementQuantity(item.id))}>
                 -
             </button>
+            <p>{subTotal}</p>
             <button onClick={() => dispatch(removeItem(item.id))}>
                 🗑️
             </button>

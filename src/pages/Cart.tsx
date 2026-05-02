@@ -24,6 +24,9 @@ const Cart = () => {
 
     const [showModal, setShowModal] = useState(false);
     const [step, setStep] = useState<CheckoutStep>("confirm");
+    const total = items.reduce((acc, item) => {
+        return acc + item.price * item.quantity;
+    }, 0);
 
     return (
        
@@ -48,6 +51,7 @@ const Cart = () => {
             step={step}
             setStep={setStep}
             />
+            <p>Total: ${total}</p>
         </div>
         
     )
