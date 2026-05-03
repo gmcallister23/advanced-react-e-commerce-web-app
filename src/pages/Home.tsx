@@ -48,7 +48,7 @@ const Home: React.FC = () => {
 
     return (
         
-        <div>
+        <div className="bg-warning-subtle pt-5">
             
         <nav>
             <NavBar />
@@ -61,12 +61,13 @@ const Home: React.FC = () => {
             ***Moved to navbar, not needed anymore***
             */}
             
-            
-            <div className="d-flex flex-wrap p-2 justify-content-center">
-            {filteredProducts.map((product: Product) => (
-            <ProductCard product={product} key={product.id} />
-        ))}
-     </div>
+            <div className="container py-3">
+                <div className="row g-4 justify-content-center">
+                {filteredProducts.map((product: Product) => (
+                <ProductCard product={product} key={product.id} />
+                ))}
+            </div>
+            </div>
      </div>
     )
 }

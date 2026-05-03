@@ -13,19 +13,20 @@ const CartItemComponent = ({item}: Props) => {
     const subTotal = item.price * item.quantity;
 
     return (
-        <div className="d-flex p-3 justify-content-around align-items-end border border-dark rounded bg-secondary-subtle">
-            <img src={item.image} alt={item.title} width={50} height={50}/>
-            <h3>{item.title}</h3>
-            <p>${item.price}</p>
-            <button onClick={() => dispatch(incrementQuantity(item.id))}> 
+        <div className="d-flex align-items-center border border-dark rounded bg-primary-subtle">
+            <img className="col-xs m-2" src={item.image} alt={item.title} width={50} height={50}/>
+            <h3 className="col-6 d-flex justify-content-center m-2">{item.title}</h3>
+            <p className="col-1 m-2 d-flex">$ {item.price}</p>
+            <button className="col-xs-1 m-2 btn btn-dark btn" 
+            onClick={() => dispatch(incrementQuantity(item.id))}> 
                 + 
             </button>
-            <p>Qty: {item.quantity}</p>
-            <button onClick={() => dispatch(decrementQuantity(item.id))}>
+            <p className="col-xs-1 m-2">Qty: {item.quantity}</p>
+            <button className="col-xs-1 m-2 btn btn-dark btn"  onClick={() => dispatch(decrementQuantity(item.id))}>
                 -
             </button>
-            <p>{subTotal}</p>
-            <button onClick={() => dispatch(removeItem(item.id))}>
+            <p className="col-1 m-2">$ {subTotal}</p>
+            <button className="col-xs-1 m-2 shadow-lg btn" onClick={() => dispatch(removeItem(item.id))}>
                 🗑️
             </button>
         </div>  

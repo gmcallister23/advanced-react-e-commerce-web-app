@@ -30,7 +30,7 @@ const NavBar = () => {
     const filteredProducts = getFilteredProducts();
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-primary-subtle ps-3 gap-3 fixed-top">
             <Link className="navbar-brand" to='/'>Shop</Link>
                 <div className="navbar-nav">
                     <Link className="nav-item nav-link" to="/profile">Profile</Link>
@@ -50,7 +50,7 @@ const NavBar = () => {
                     ))}
                     </select>
             
-                    <button className='btn' onClick={() => dispatch({type: "SET_SELECTED_CATEGORY", payload: ''})}>
+                    <button className='btn bg-light ms-3' onClick={() => dispatch({type: "SET_SELECTED_CATEGORY", payload: ''})}>
                     Clear Filter
                     </button>
                 </div>

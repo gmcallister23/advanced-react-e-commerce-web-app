@@ -8,7 +8,7 @@ const Profile: React.FC = () => {
     const {products, selectedCategory, dispatch} = useProductContext();
 
     return (
-        <div>
+        <div className="pt-5">
             
             <NavBar />
             
