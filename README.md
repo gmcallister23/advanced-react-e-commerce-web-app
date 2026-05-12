@@ -1,3 +1,10 @@
+This is an e-commerce app that React, Redux and Typescript.
+
+You can view products imported from Fakestopapi, add them to a cart, edit the cart and complete a simulated checkout process.
+
+The app utilizes local storage to save data accross different pages in the app as well as different browser sessions.  
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
