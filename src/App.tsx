@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { ProductProvider } from "./context/ProductContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Cart from "./pages/Cart";
+import { AuthProvider } from "./context/AuthContext";
 
 const client = new QueryClient()
 
@@ -13,13 +14,15 @@ function App() {
   return (
     <QueryClientProvider client={client}>
       <ProductProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element = {<Home />} />
-            <Route path='/profile' element = {<Profile />} />
-            <Route path='/cart' element = {<Cart />} />
-          </Routes>
-        </BrowserRouter>
+        <AuthProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path='/' element = {<Home />} />
+              <Route path='/profile' element = {<Profile />} />
+              <Route path='/cart' element = {<Cart />} />
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
       </ProductProvider>
     </QueryClientProvider>
   )
