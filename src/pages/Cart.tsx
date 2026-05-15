@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
 import CartItemComponent from '../components/CartItem';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/Navbar/NavBar';
 import CheckoutModal from '../components/modals/ConfirmPurchase';
 import { useState } from 'react';
 import type { CheckoutStep } from '../types/types';

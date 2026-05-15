@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchProducts } from '../api/api';
 import { fetchCategories } from '../api/api';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/Navbar/NavBar';
 
 const Home: React.FC = () => {
 

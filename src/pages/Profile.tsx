@@ -1,7 +1,7 @@
 import type React from "react";
 import { useProductContext } from "../context/ProductContext";
 import type { Product } from "../types/types";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/Navbar/NavBar";
 
 const Profile: React.FC = () => {
 
