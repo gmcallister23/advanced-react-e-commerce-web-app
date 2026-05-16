@@ -59,8 +59,8 @@ const AddProduct = () => {
 
             let imageUrl = '';
             
-            if (imageFile) {await uploadImage(imageFile);
-
+            if (imageFile) {
+                imageUrl = await uploadImage(imageFile);
             } 
             const productToSave = {
                 ...formData,
@@ -138,8 +138,7 @@ const AddProduct = () => {
                         name='image'
                         type='file'
                         accept='image/*'
-                        value={formData.image}
-                        onChange={(e) => {
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             if (e.target.files?.[0]) {
                                 setImageFile(e.target.files[0]);
                                 }
