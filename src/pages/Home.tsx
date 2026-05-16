@@ -23,7 +23,7 @@ const Home: React.FC = () => {
 
     useEffect(() => {
         if (productsData)
-        dispatch({ type: 'SET_PRODUCTS', payload: productsData.data })
+        dispatch({ type: 'SET_PRODUCTS', payload: productsData })
     }, [dispatch, productsData]);
 
     const getFilteredProducts = () => {

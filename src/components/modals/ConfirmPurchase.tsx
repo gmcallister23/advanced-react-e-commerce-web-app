@@ -27,7 +27,7 @@ const CheckoutModal = ({ step, setStep, showModal, setShowModal }: Props) => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title">
-                            {step === "confirm" ? "Confirm Purchas" : "Success"}
+                            {step === "confirm" ? "Confirm Purchase" : "Success"}
                             </h5>
                         </div>
                 <div className="modal-body">
