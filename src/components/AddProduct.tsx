@@ -4,6 +4,8 @@ import { Container, Form, Button, Alert } from "react-bootstrap";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from '../lib/firebaseConfig';
 import type { ProductInput } from "../types/types";
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storage } from '../lib/firebaseConfig';
 
 const AddProduct = () => {
 
@@ -12,6 +14,8 @@ const AddProduct = () => {
     //const [product, setProduct] = useState();
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [imageFile, setImageFile] = useState<File | null>(null);
+
     const [formData, setFormData] = useState<ProductInput>({
         title: '',
         description: '',
@@ -19,7 +23,22 @@ const AddProduct = () => {
         price: '',
         image: '',
     });
+
     const [createdTitle, setCreatedTitle] = useState('');
+
+    const uploadImage = async (file: File) => {
+        const storageRef = ref(
+            storage,
+            `products/${Date.now()}-${file.name}`
+        );
+        
+    await uploadBytes(storageRef, file);
+
+    const downloadURL = await getDownloadURL(storageRef);
+    
+    return downloadURL;
+
+    }
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         
@@ -37,9 +56,16 @@ const AddProduct = () => {
         e.preventDefault();
 
         try {
+
+            let imageUrl = '';
+            
+            if (imageFile) {await uploadImage(imageFile);
+
+            } 
             const productToSave = {
                 ...formData,
                 price: Number(formData.price),
+                image: imageUrl,
             };
 
             const title = formData.title;
@@ -51,6 +77,7 @@ const AddProduct = () => {
             setCreatedTitle(title);
             setSubmitted(true);
             setError(null);
+            setImageFile(null);
 
             setFormData({
                 title: '',
@@ -109,8 +136,14 @@ const AddProduct = () => {
                         <Form.Label>Image</Form.Label>
                         <Form.Control
                         name='image'
+                        type='file'
+                        accept='image/*'
                         value={formData.image}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                                setImageFile(e.target.files[0]);
+                                }
+                            }}   
                         />
                     </Form.Group>
             
