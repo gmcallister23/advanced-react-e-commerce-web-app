@@ -10,6 +10,7 @@ import Register from "./pages/RegisterPage";
 import Login from "./pages/LoginPage";
 import Logout from "./pages/LogoutPage";
 import { Navbar } from "react-bootstrap";
+import ProductPage from "./pages/ProductPage";
 
 const client = new QueryClient()
 
@@ -24,6 +25,7 @@ function App() {
             <Routes>
               <Route path='/' element = {<Home />} />
               <Route path='/profile' element = {<Profile />} />
+              <Route path='/product' element = {<ProductPage />} />
               <Route path='/cart' element = {<Cart />} />
               <Route path='/register' element = {<Register />} />
               <Route path='/login' element = {<Login />} />

@@ -37,3 +37,9 @@ const ProductCard: React.FC<{product: Product}> = ({product}) => {
 }
 
 export default ProductCard;
+
+//Photo by <a href="https://www.shopify.com/stock-photos/@thombradley?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Tan+Colored+Hat+On+Monochrome+Background&amp;utm_medium=referral&amp;utm_source=credit">Thom Bradley</a> from <a href="https://www.shopify.com/stock-photos/hat?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Tan+Colored+Hat+On+Monochrome+Background&amp;utm_medium=referral&amp;utm_source=credit">Burst</a>
+
+//Photo by <a href="https://www.shopify.com/stock-photos/@lightleaksin?utm_campaign=photo_credit&amp;utm_content=Free+Mens+Denim+Fashion+Image%3A+Stunning+Photography&amp;utm_medium=referral&amp;utm_source=credit">Samantha Hurley</a> from <a href="https://www.shopify.com/stock-photos/watch?utm_campaign=photo_credit&amp;utm_content=Free+Mens+Denim+Fashion+Image%3A+Stunning+Photography&amp;utm_medium=referral&amp;utm_source=credit">Burst</a>
+
+//Photo by <a href="https://www.shopify.com/stock-photos/@sarahpflugphoto?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Watch+With+Leather+Strap+Near+Leaves&amp;utm_medium=referral&amp;utm_source=credit">Sarah Pflug</a> from <a href="https://www.shopify.com/stock-photos/calendar?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Watch+With+Leather+Strap+Near+Leaves&amp;utm_medium=referral&amp;utm_source=credit">Burst</a>

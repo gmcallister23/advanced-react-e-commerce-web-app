@@ -1,5 +1,5 @@
 export interface Product { 
-        id: number,
+        id: string, //change from number to string because firebase uses UUID which are strings not numbers
         title: string,
         price: number,
         description: string,
@@ -10,6 +10,14 @@ export interface Product {
             count: number,
         };
     }
+
+export type ProductInput = {
+    title: string;
+    description: string;
+    category: string;
+    price: string;
+    image: string;
+};
 
 export interface CartItem {
         id: number,

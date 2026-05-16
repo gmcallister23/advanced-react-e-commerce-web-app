@@ -41,7 +41,7 @@ const NavBar = () => {
                     <Link className="nav-item nav-link" to="/cart">Cart({totalQuantity})</Link>
                     {user ? (
                         <>
-                        
+                        <Link className="nav-item nav-link" to="/product">Add Product</Link>
                         <Link className="nav-item nav-link" to="/profile">Profile</Link>
                         <Link className="nav-item nav-link" to="/logout">Logout</Link>
                          <div>
