@@ -51,12 +51,13 @@ const EditProductPage: React.FC = () => {
             <div className='container py-3'>
                 <div className='row g-4 justify-content-center'>
                     {filteredProducts.map((product: Product) => (
+                    <div key={product.id}>
                         <ProductCard product={product} key={product.id} />
+                        <button className="danger" onClick={() => handleDelete(product.id)}>Delete Item</button>
+                    </div>
                     ))}
                 </div>
-                <button className="danger" onClick={() => handleDelete(products.id)}>Delete Item</button>
             </div>
-
         </div>
     )
 
