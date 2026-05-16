@@ -51,7 +51,7 @@ const NavBar = () => {
                         value={selectedCategory}
                         >
                         <option value=''> All Categories</option>
-                        {categories?.data.map((category: Category) => (
+                        {categories?.map((category: Category) => (
                         <option value={category} key={category}>
                         {category}
                         </option>

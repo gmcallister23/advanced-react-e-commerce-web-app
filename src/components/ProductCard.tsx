@@ -25,7 +25,7 @@ const ProductCard: React.FC<{product: Product}> = ({product}) => {
         <img src={product.image} alt={product.title} className="w-25 "/>
         <h5>${product.price}</h5>
         <h5 className="bg-dark-subtle p-2 shadow-sm border border-black rounded">{product.category.toUpperCase()}</h5>
-        <Rating style={{ maxWidth: 250 }} value={product.rating.rate} readOnly />
+        {/*<Rating style={{ maxWidth: 250 }} value={product.rating.rate} readOnly /> */}
         <p style={{ height: '150px', overflowY:'auto'}}>{product.description}</p>
         <button className="btn bg-success-subtle border-black shadow-md mt-auto"onClick={() => {console.log("Added to cart", product);
         console.log("CART ITEM BEING SENT", toCartItem(product))
