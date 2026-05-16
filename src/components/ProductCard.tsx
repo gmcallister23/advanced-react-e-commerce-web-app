@@ -22,7 +22,7 @@ const ProductCard: React.FC<{product: Product}> = ({product}) => {
     <div className="col-12 col-sm-6 col-lg-4">
     <div className="d-flex flex-column align-items-center p-2 shadow-sm border rounded bg-secondary-subtle h-100 overflow-auto">
         <h3>{product.title}</h3>
-        <img src={product.image} alt={product.title} className="w-25 "/>
+        <img src={product.image || '/placeholder.png'}  alt={product.title} className="w-25 "/>
         <h5>${product.price}</h5>
         <h5 className="bg-dark-subtle p-2 shadow-sm border border-black rounded">{product.category.toUpperCase()}</h5>
         {/*<Rating style={{ maxWidth: 250 }} value={product.rating.rate} readOnly /> */}

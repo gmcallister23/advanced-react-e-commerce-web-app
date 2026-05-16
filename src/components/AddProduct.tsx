@@ -32,9 +32,11 @@ const AddProduct = () => {
             `products/${Date.now()}-${file.name}`
         );
         
-    await uploadBytes(storageRef, file);
+    //await uploadBytes(storageRef, file);
 
-    const downloadURL = await getDownloadURL(storageRef);
+    const snapshot = await uploadBytes(storageRef, file);
+
+    const downloadURL = await getDownloadURL(snapshot.ref);
     
     return downloadURL;
 
