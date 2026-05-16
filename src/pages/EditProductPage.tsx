@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import type { Product, Category } from '../types/types';
 import { useProductContext } from '../context/ProductContext';
 import { useQuery } from '@tanstack/react-query';
 import { fetchProducts } from '../api/api';
 import NavBar from '../components/Navbar/NavBar';
-import { Nav } from 'react-bootstrap';
+import { doc, deleteDoc } from 'firebase/firestore';
+import { db } from '../lib/firebaseConfig';
+//import { Nav } from 'react-bootstrap';
 
 const EditProductPage: React.FC = () => {
 
@@ -31,6 +33,15 @@ const EditProductPage: React.FC = () => {
 
     const filteredProducts = getFilteredProducts();
 
+    const handleDelete = async (documentId: string) => {
+        try {
+            await deleteDoc(doc(db, 'products', documentId));
+            console.log('Document successfully deleted!')
+        } catch (error) {
+            console.error('Error removing document: ', error);
+        }
+    }
+
     return (
         <div>
             <nav>
@@ -43,6 +54,7 @@ const EditProductPage: React.FC = () => {
                         <ProductCard product={product} key={product.id} />
                     ))}
                 </div>
+                <button className="danger" onClick={() => handleDelete(products.id)}>Delete Item</button>
             </div>
 
         </div>
