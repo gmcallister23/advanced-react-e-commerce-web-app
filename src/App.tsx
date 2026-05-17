@@ -13,10 +13,28 @@ import { Navbar } from "react-bootstrap";
 import ProductPage from "./pages/ProductPage";
 import EditProductPage from "./pages/EditProductPage";
 import EditProductForm from './components/EditProductForm';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const client = new QueryClient()
 
+
+
 function App() {
+
+  const dispatch = useDispatch();
+
+  const user = useSelector((state: any) => state.auth.user);
+
+  useEffect(() => {
+  if (!user) return;
+
+  const unsub = subscribeToCart(user.uid, (items) => {
+    dispatch(setCart(items));
+  })
+  return () => unsub()
+}, [user]);
 
   return (
     <QueryClientProvider client={client}>

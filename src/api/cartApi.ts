@@ -1,7 +1,25 @@
 import type { CartItem } from "../types/types";
-import { addDoc, collection, getDoc, deleteDoc, doc, updateDoc, increment, setDoc } from "firebase/firestore";
+import { addDoc, collection, getDoc, deleteDoc, doc, updateDoc, increment, setDoc, onSnapshot} from "firebase/firestore";
 import { db } from '../lib/firebaseConfig';
 
+export const subscribeToCart = (
+    userId: string, callback: (items: CartItem[]) => void
+) => {
+
+    return onSnapshot(
+        collection(db, 'carts', userId, 'items'),
+        (snapshot) => {
+            const items = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data(),
+            })) as CartItem[];
+            
+            callback(items);
+
+        }
+    )
+
+}
 
 export const addItem = async (
     userId: string,

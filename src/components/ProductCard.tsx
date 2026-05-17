@@ -1,14 +1,20 @@
 import type { Product } from '../types/types';
 import { Rating } from '@smastrom/react-rating';
-import { useDispatch } from 'react-redux';
-import { addItem } from '../cart/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+i//mport { addItem } from '../cart/cartSlice';
 import type { CartItem } from '../types/types';
+import { addItem } from '../api/cartApi';
 
 
 
 const ProductCard: React.FC<{product: Product}> = ({product}) => {
 
-  const  dispatch = useDispatch();
+  //const  dispatch = useDispatch();
+  
+  const user = useSelector((state: any) => state.auth.user)
+
+  
+
   const toCartItem = (product: Product): CartItem => ({
     id: product.id,
     title: product.title,
@@ -17,6 +23,17 @@ const ProductCard: React.FC<{product: Product}> = ({product}) => {
     quantity: 1,
 
   })
+
+  const handleAddItem = async () => {
+
+      if (!user) return;
+
+      const cartItem = toCartItem(product);
+
+      await addItem(user.uid, cartItem);
+
+  }
+  
 
   return (
     <div className="col-12 col-sm-6 col-lg-4">
@@ -29,7 +46,7 @@ const ProductCard: React.FC<{product: Product}> = ({product}) => {
         <p style={{ height: '150px', overflowY:'auto'}}>{product.description}</p>
         <button className="btn bg-success-subtle border-black shadow-md mt-auto"onClick={() => {console.log("Added to cart", product);
         console.log("CART ITEM BEING SENT", toCartItem(product))
-        dispatch(addItem(toCartItem(product)))}}>Add to Cart</button>
+        handleAddItem();}}>Add to Cart</button>
     </div>
     </div>
     
