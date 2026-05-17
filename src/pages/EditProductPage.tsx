@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import type { Product, Category } from '../types/types';
 import { useProductContext } from '../context/ProductContext';
 import { useQuery } from '@tanstack/react-query';
@@ -53,7 +53,8 @@ const EditProductPage: React.FC = () => {
                     {filteredProducts.map((product: Product) => (
                     <div key={product.id}>
                         <ProductCard product={product} key={product.id} />
-                        <button className="danger" onClick={() => handleDelete(product.id)}>Delete Item</button>
+                        <Link className='btn btn-success' to={`/edit/${product.id}`}>Update Product</Link>
+                        <button className="btn btn-danger" onClick={() => handleDelete(product.id)}>Delete Item</button>
                     </div>
                     ))}
                 </div>

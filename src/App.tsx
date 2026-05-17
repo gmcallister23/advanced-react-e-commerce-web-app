@@ -12,6 +12,7 @@ import Logout from "./pages/LogoutPage";
 import { Navbar } from "react-bootstrap";
 import ProductPage from "./pages/ProductPage";
 import EditProductPage from "./pages/EditProductPage";
+import EditProductForm from './components/EditProductForm';
 
 const client = new QueryClient()
 
@@ -32,6 +33,7 @@ function App() {
               <Route path='/register' element = {<Register />} />
               <Route path='/login' element = {<Login />} />
               <Route path='/logout' element = {<Logout />} />
+              <Route path='/edit/:id' element = {<EditProductForm />} />
             </Routes>
             {/*</Navbar>*/}
           </BrowserRouter>
