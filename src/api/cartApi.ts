@@ -3,7 +3,7 @@ import { addDoc, collection, getDoc, deleteDoc, doc, updateDoc, increment, setDo
 import { db } from '../lib/firebaseConfig';
 
 
-const addItem = async (
+export const addItem = async (
     userId: string,
     item: CartItem
 ) => {
@@ -22,11 +22,11 @@ const addItem = async (
     };
 };
 
-const removeItem = async (userId: string, productId: string) => {
+export const removeItem = async (userId: string, productId: string) => {
     await deleteDoc(doc(db, 'carts', userId, 'items', productId));
 };
 
-const incrementQuantity = async (userId: string, productId: string) => {
+export const incrementQuantity = async (userId: string, productId: string) => {
     
     const itemRef = doc(db, 'carts', userId, 'items', productId)
     
@@ -35,7 +35,7 @@ const incrementQuantity = async (userId: string, productId: string) => {
     });
 };
 
-const decrementQuantity = async (userId: string, productId: string) => {
+export const decrementQuantity = async (userId: string, productId: string) => {
     
     const itemRef = doc(db, 'carts', userId, 'items', productId);
     const snapshot = await getDoc(itemRef)
@@ -53,4 +53,4 @@ const decrementQuantity = async (userId: string, productId: string) => {
     }
 }
 
-export default { addItem, removeItem, incrementQuantity, decrementQuantity};
+//export default { addItem, removeItem, incrementQuantity, decrementQuantity};
