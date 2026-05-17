@@ -1,9 +1,10 @@
 import type { Product } from '../types/types';
 import { Rating } from '@smastrom/react-rating';
 import { useDispatch, useSelector } from 'react-redux';
-i//mport { addItem } from '../cart/cartSlice';
+//import { addItem } from '../cart/cartSlice';
 import type { CartItem } from '../types/types';
 import { addItem } from '../api/cartApi';
+import { useAuth } from '../context/AuthContext';
 
 
 
@@ -11,7 +12,7 @@ const ProductCard: React.FC<{product: Product}> = ({product}) => {
 
   //const  dispatch = useDispatch();
   
-  const user = useSelector((state: any) => state.auth.user)
+  const { user } = useAuth();
 
   
 

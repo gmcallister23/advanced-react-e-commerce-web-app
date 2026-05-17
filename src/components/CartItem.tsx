@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 //import { useProductContext } from '../context/ProductContext';
 import type { CartItem } from '../types/types'
 import { incrementQuantity, decrementQuantity, removeItem } from '../api/cartApi';
+import { useAuth } from '../context/AuthContext';
 
 type Props = {
     item: CartItem;
@@ -12,7 +13,7 @@ const CartItemComponent = ({item}: Props) => {
     //const dispatch = useDispatch();
     //const { dispatch } = useProductContext();
     
-    const user = useSelector((state: any) => state.auth.user);
+    const { user } = useAuth();
     
     const subTotal = item.price * item.quantity;
 

@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { subscribeToCart } from "./api/cartApi";
 import { setCart } from "./cart/cartSlice";
+import { useAuth } from "./context/AuthContext";
 
 const client = new QueryClient()
 
@@ -26,7 +27,7 @@ function App() {
 
   const dispatch = useDispatch();
 
-  const user = useSelector((state: any) => state.auth.user);
+  const {user} = useAuth();
 
   useEffect(() => {
   if (!user) return;
