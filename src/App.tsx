@@ -15,7 +15,8 @@ import EditProductPage from "./pages/EditProductPage";
 import EditProductForm from './components/EditProductForm';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { subscribeToCart } from "./api/cartApi";
+import { setCart } from "./cart/cartSlice";
 
 const client = new QueryClient()
 

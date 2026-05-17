@@ -17,7 +17,29 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addItem: (state, action: PayloadAction<CartItem>) => {
+        
+        setCart: (state, action: PayloadAction<CartItem[]>) => {
+            state.items = action.payload;
+        },
+
+        clearCart: (state) => {
+            state.items = [];
+            state.totalQuantity = 0;
+
+            saveCart(state.items);
+            
+        }
+
+     }
+})
+
+export const { setCart, clearCart } = cartSlice.actions;
+export default cartSlice.reducer;
+
+//export const { addItem, incrementQuantity, decrementQuantity, removeItem};
+
+//old redux reducers --> not needed due to migration to firebase/firestore
+{/*addItem: (state, action: PayloadAction<CartItem>) => {
             
             const newItem = action.payload;
 
@@ -32,7 +54,7 @@ const cartSlice = createSlice({
             saveCart(state.items);
         },
 
-        incrementQuantity: (state, action: PayloadAction<number>) => {
+        {/* incrementQuantity: (state, action: PayloadAction<number>) => {
             const item = state.items.find(item => item.id === action.payload);
             if (item) {
                 item.quantity += 1;
@@ -42,7 +64,7 @@ const cartSlice = createSlice({
             saveCart(state.items);
         },
         
-        decrementQuantity: (state, action: PayloadAction<number>) => {
+        {/*decrementQuantity: (state, action: PayloadAction<number>) => {
             const item = state.items.find(item => item.id === action.payload);
             if (item && item.quantity > 1) {
                 item.quantity -= 1;
@@ -55,7 +77,7 @@ const cartSlice = createSlice({
 
         },
 
-        removeItem: (state, action: PayloadAction<number>) => {
+        {/*removeItem: (state, action: PayloadAction<number>) => {
             const item = state.items.find(item => item.id === action.payload);
             
             if (!item) return;
@@ -64,19 +86,4 @@ const cartSlice = createSlice({
         
             saveCart(state.items);
 
-        },
-
-        
-        clearCart: (state) => {
-            state.items = [];
-            state.totalQuantity = 0;
-
-            saveCart(state.items);
-            
-        }
-
-     }
-})
-
-export const { addItem, incrementQuantity, decrementQuantity, removeItem, clearCart } = cartSlice.actions;
-export default cartSlice.reducer;
+        */}
