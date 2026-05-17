@@ -10,7 +10,7 @@ export const subscribeToCart = (
         collection(db, 'carts', userId, 'items'),
         (snapshot) => {
             const items = snapshot.docs.map(doc => ({
-                id: doc.id,
+                productId: doc.id,
                 ...doc.data(),
             })) as CartItem[];
             

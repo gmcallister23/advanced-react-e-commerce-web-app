@@ -19,17 +19,17 @@ const CartItemComponent = ({item}: Props) => {
 
     const handleIncrement = async () => {
         if (!user) return;
-        await incrementQuantity(user.uid, item.id);
+        await incrementQuantity(user.uid, item.productId);
     };
 
     const handleDecrement = async () => {
         if (!user) return;
-        await decrementQuantity(user.uid, item.id);
+        await decrementQuantity(user.uid, item.productId);
     };
 
     const handleRemove = async () => {
         if (!user) return;
-        await removeItem(user.uid, item.id);
+        await removeItem(user.uid, item.productId);
     };
 
     return (

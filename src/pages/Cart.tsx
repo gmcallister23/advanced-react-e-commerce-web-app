@@ -6,7 +6,9 @@ import NavBar from '../components/Navbar/NavBar';
 import CheckoutModal from '../components/modals/ConfirmPurchase';
 import { useState } from 'react';
 import type { CheckoutStep } from '../types/types';
-import { Container } from 'react-bootstrap';
+import { createOrder } from '../api/cartApi';
+import { useAuth } from '../context/AuthContext';
+import { Container, useAccordionButton } from 'react-bootstrap';
 
 
 
@@ -29,6 +31,20 @@ const Cart = () => {
         return acc + item.price * item.quantity;
     }, 0);
 
+    const { user } = useAuth();
+    const userId = user?.uid;
+
+    const handleCreateOrder = async () => {
+        
+        if (!userId) {
+            throw new Error('User must be logged in to place an order');
+        }
+
+        await createOrder({
+            userId, items, total,
+        });
+    };
+
     return (
        
 
@@ -39,7 +55,7 @@ const Cart = () => {
             {/*<button onClick={() => navigate('/')}>Home</button> */}
             <h2 className="pt-3 ps-2">Cart ({totalQuantity} items)</h2>
             {items.map(item => (
-                <CartItemComponent key={item.id} item={item} />
+                <CartItemComponent key={item.productId} item={item} />
             ))}
             <div className="d-flex m-1 gap-1 justify-content-center align-items-center p-3">
                 
@@ -54,6 +70,7 @@ const Cart = () => {
                 setShowModal={setShowModal}
                 step={step}
                 setStep={setStep}
+                onConfirm={handleCreateOrder}
                 />
                 </div>
                 <p className="border rounded bg-white px-3 py-2 m-0">Total: ${total}</p>

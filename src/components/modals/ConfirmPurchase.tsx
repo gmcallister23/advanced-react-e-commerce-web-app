@@ -1,19 +1,23 @@
 import { useDispatch } from "react-redux";
 import type { CheckoutStep } from "../../types/types";
 import { clearCart } from "../../cart/cartSlice";
+import { createOrder } from "../../api/cartApi";
 
 type Props = {
     step: CheckoutStep;
     setStep: React.Dispatch<React.SetStateAction<CheckoutStep>>;
     showModal: boolean;
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+    onConfirm: () => Promise<void>;
 };
 
-const CheckoutModal = ({ step, setStep, showModal, setShowModal }: Props) => {
+const CheckoutModal = ({ step, setStep, showModal, setShowModal, onConfirm }: Props) => {
 
     const dispatch = useDispatch();
 
-    const handleConfirm = () => {
+    const handleConfirm = async () => {
+    await onConfirm();
+    
     dispatch(clearCart());
     setStep("success");
     }
