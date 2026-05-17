@@ -88,7 +88,7 @@ const UpdateProduct = () => {
 
         try {
 
-            let imageUrl = '';
+            let imageUrl = formData.image;
 
             if (imageFile) {
                 imageUrl = await uploadImage(imageFile);
@@ -183,6 +183,17 @@ const UpdateProduct = () => {
                             }
                         }}
                         />
+                        {formData.image && (
+                            <div style={{ marginTop: '10px'}}>
+                                <p>Current Image:</p>
+                                <img
+                                    src={formData.image}
+                                    alt='Product'
+                                    style={{ width: '150px', borderRadius: '8px'}}
+                                    />
+                            </div>
+                            
+                        )}
                     </Form.Group>
                     <Button type='submit'>Update Product</Button>
                 </Form>
