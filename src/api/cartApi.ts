@@ -1,5 +1,5 @@
 import type { CartItem } from "../types/types";
-import { addDoc, collection, getDoc, deleteDoc, doc, updateDoc, increment, setDoc, onSnapshot} from "firebase/firestore";
+import { addDoc, collection, getDoc, deleteDoc, doc, updateDoc, increment, setDoc, onSnapshot, serverTimestamp} from "firebase/firestore";
 import { db } from '../lib/firebaseConfig';
 
 export const subscribeToCart = (
@@ -68,6 +68,32 @@ export const decrementQuantity = async (userId: string, productId: string) => {
         await updateDoc(itemRef, {
             quantity: increment(-1),
         });
+    }
+}
+
+export const createOrder = async (orderData: {
+    userId: string;
+    items: {
+        productId: string,
+        title: string,
+        price: number;
+        quantity: number;
+    } [],
+    total: number;
+}) => {
+    try{
+        const orderRef = await addDoc(collection(db, 'orders'), {
+            userId: orderData.userId,
+            items: orderData.items,
+            total: orderData.total,
+            status: 'pending',
+            createdAt: serverTimestamp(),
+        })
+
+        return orderRef.id;
+    } catch (error) {
+        console.error('Error creating order: ', error)
+        throw error;
     }
 }
 
