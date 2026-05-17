@@ -32,16 +32,17 @@ function App() {
   useEffect(() => {
   if (!user) return;
 
+    console.log("LISTENER ATTACHING");
+
   const unsub = subscribeToCart(user.uid, (items) => {
+    console.log("SNAPSHOT FIRED:", items)
     dispatch(setCart(items));
   })
   return () => unsub()
-}, [user]);
+}, [user?.uid]);
 
   return (
-    <QueryClientProvider client={client}>
-      <ProductProvider>
-        <AuthProvider>
+    
           <BrowserRouter>
             {/*<Navbar> Navbar is imported to each page as a component right now*/}
             <Routes>
@@ -57,9 +58,7 @@ function App() {
             </Routes>
             {/*</Navbar>*/}
           </BrowserRouter>
-        </AuthProvider>
-      </ProductProvider>
-    </QueryClientProvider>
+        
   )
 }
 

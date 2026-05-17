@@ -1,15 +1,16 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { CartItem } from '../types/types';
-import { getCart, saveCart } from './cartStorage';
+//import { getCart, saveCart } from './cartStorage';
 
 interface CartState {
     items: CartItem[],
-    totalQuantity: number,
+    //totalQuantity: number,
 }
 
 const initialState: CartState = {
-    items: getCart(),
-    totalQuantity: 0,
+    //items: getCart(),
+    items: [],
+    //totalQuantity: 0,
 
 }
 
@@ -24,9 +25,9 @@ const cartSlice = createSlice({
 
         clearCart: (state) => {
             state.items = [];
-            state.totalQuantity = 0;
+            //state.totalQuantity = 0;
 
-            saveCart(state.items);
+            //saveCart(state.items);
             
         }
 
