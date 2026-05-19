@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { subscribeToCart } from "./api/cartApi";
 import { setCart } from "./cart/cartSlice";
 import { useAuth } from "./context/AuthContext";
+import { useCartSync } from "./hooks/useCartSync";
 
 const client = new QueryClient()
 
@@ -25,21 +26,11 @@ const client = new QueryClient()
 
 function App() {
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
 
   const {user} = useAuth();
 
-  useEffect(() => {
-  if (!user) return;
-
-    console.log("LISTENER ATTACHING");
-
-  const unsub = subscribeToCart(user.uid, (items) => {
-    console.log("SNAPSHOT FIRED:", items)
-    dispatch(setCart(items));
-  })
-  return () => unsub()
-}, [user?.uid]);
+  useCartSync(user?.uid);
 
   return (
     

@@ -1,5 +1,5 @@
 import type { CartItem } from "../types/types";
-import { addDoc, collection, getDoc, deleteDoc, doc, updateDoc, increment, setDoc, onSnapshot, serverTimestamp} from "firebase/firestore";
+import { addDoc, collection, getDoc, getDocs, where, query, deleteDoc, doc, updateDoc, increment, setDoc, onSnapshot, serverTimestamp} from "firebase/firestore";
 import { db } from '../lib/firebaseConfig';
 
 export const subscribeToCart = (
@@ -25,7 +25,7 @@ export const addItem = async (
     userId: string,
     item: CartItem
 ) => {
-    const itemRef = doc(db, 'carts', userId, 'items', item.id);
+    const itemRef = doc(db, 'carts', userId, 'items', item.productId);
 
     const snapshot = await getDoc(itemRef)
     
@@ -69,6 +69,15 @@ export const decrementQuantity = async (userId: string, productId: string) => {
             quantity: increment(-1),
         });
     }
+}
+
+export const clearUserCart = async (userId: string) => {
+    const q = query(collection(db, 'cart'), where('userId', '==', userId));
+    const snapshot = await getDocs(q);
+
+    const deletePromises = snapshot.docs.map(doc => deleteDoc(doc.ref));
+
+    await Promise.all(deletePromises);
 }
 
 // export const createOrder = async (orderData: {

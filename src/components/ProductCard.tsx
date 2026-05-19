@@ -17,7 +17,7 @@ const ProductCard: React.FC<{product: Product}> = ({product}) => {
   
 
   const toCartItem = (product: Product): CartItem => ({
-    id: product.id,
+    productId: product.id,
     title: product.title,
     price: product.price,
     image: product.image,

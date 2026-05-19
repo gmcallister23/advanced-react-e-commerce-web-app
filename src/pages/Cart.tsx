@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
 import CartItemComponent from '../components/CartItem';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,9 @@ import { useState } from 'react';
 import type { CheckoutStep } from '../types/types';
 import { createOrder } from '../api/orderApi';
 import { useAuth } from '../context/AuthContext';
-import { Container, useAccordionButton } from 'react-bootstrap';
+import { clearUserCart } from '../api/cartApi';
+import { clearCart } from '../cart/cartSlice';
+
 
 
 
@@ -34,6 +36,8 @@ const Cart = () => {
     const { user } = useAuth();
     const userId = user?.uid;
 
+    const dispatch = useDispatch();
+
     const handleCreateOrder = async () => {
         
         if (!userId) {
@@ -43,6 +47,10 @@ const Cart = () => {
         await createOrder({
             userId, items, total,
         });
+
+        await clearUserCart(userId);
+
+        dispatch(clearCart());
     };
 
     return (
