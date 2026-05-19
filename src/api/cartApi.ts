@@ -2,11 +2,19 @@ import type { CartItem } from "../types/types";
 import { addDoc, collection, getDoc, getDocs, where, query, deleteDoc, doc, updateDoc, increment, setDoc, onSnapshot, serverTimestamp} from "firebase/firestore";
 import { db } from '../lib/firebaseConfig';
 
+let activeUnsub: null | (() => void) = null;
+
 export const subscribeToCart = (
     userId: string, callback: (items: CartItem[]) => void
 ) => {
 
-    return onSnapshot(
+    //kill previous listener before starting a new one
+    if (activeUnsub) {
+        activeUnsub();
+        activeUnsub = null;
+
+    }
+    const unsub =  onSnapshot(
         collection(db, 'carts', userId, 'items'),
         (snapshot) => {
             const items = snapshot.docs.map(doc => ({
@@ -17,7 +25,11 @@ export const subscribeToCart = (
             callback(items);
 
         }
-    )
+    );
+
+    activeUnsub = unsub;
+
+    return unsub;
 
 }
 

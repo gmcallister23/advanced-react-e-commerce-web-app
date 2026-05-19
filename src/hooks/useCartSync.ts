@@ -1,24 +1,32 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { subscribeToCart } from '../api/cartApi';
 import { setCart } from '../cart/cartSlice';
 
 export const useCartSync = (userId?: string) => {
     const dispatch = useDispatch();
+    const unsubRef = useRef<null | (() => void)>(null);
 
     useEffect(() => {
+    
     console.log('Attach');
-        if (!userId) return;
 
+    unsubRef.current?.();
+    unsubRef.current = null;
+
+        if (!userId) {
+            return () => {};
+        }    
     console.log("LISTENER ATTACHING");
 
-    const unsub = subscribeToCart(userId, (items) => {
+    unsubRef.current = subscribeToCart(userId, (items) => {
     console.log("SNAPSHOT FIRED:", items)
     dispatch(setCart(items));
     })
     return () => {
         console.log('DETACH');
-        unsub()
+        unsubRef.current?.();
+        unsubRef.current = null;
     }
     }, [userId, dispatch]);
 }

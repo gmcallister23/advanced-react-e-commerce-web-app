@@ -32,6 +32,8 @@ function App() {
 
   useCartSync(user?.uid);
 
+  console.log('APP MOUNT');
+
   return (
     
           <BrowserRouter>
