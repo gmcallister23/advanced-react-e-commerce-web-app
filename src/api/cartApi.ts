@@ -71,30 +71,30 @@ export const decrementQuantity = async (userId: string, productId: string) => {
     }
 }
 
-export const createOrder = async (orderData: {
-    userId: string;
-    items: {
-        productId: string,
-        title: string,
-        price: number;
-        quantity: number;
-    } [],
-    total: number;
-}) => {
-    try{
-        const orderRef = await addDoc(collection(db, 'orders'), {
-            userId: orderData.userId,
-            items: orderData.items,
-            total: orderData.total,
-            status: 'pending',
-            createdAt: serverTimestamp(),
-        })
+// export const createOrder = async (orderData: {
+//     userId: string;
+//     items: {
+//         productId: string,
+//         title: string,
+//         price: number;
+//         quantity: number;
+//     } [],
+//     total: number;
+// }) => {
+//     try{
+//         const orderRef = await addDoc(collection(db, 'orders'), {
+//             userId: orderData.userId,
+//             items: orderData.items,
+//             total: orderData.total,
+//             status: 'pending',
+//             createdAt: serverTimestamp(),
+//         })
 
-        return orderRef.id;
-    } catch (error) {
-        console.error('Error creating order: ', error)
-        throw error;
-    }
-}
+//         return orderRef.id;
+//     } catch (error) {
+//         console.error('Error creating order: ', error)
+//         throw error;
+//     }
+// }
 
 //export default { addItem, removeItem, incrementQuantity, decrementQuantity};

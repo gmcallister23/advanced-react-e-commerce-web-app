@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import type { CheckoutStep } from "../../types/types";
 import { clearCart } from "../../cart/cartSlice";
-import { createOrder } from "../../api/cartApi";
+import { createOrder } from "../../api/orderApi";
 
 type Props = {
     step: CheckoutStep;

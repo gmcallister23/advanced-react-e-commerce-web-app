@@ -6,7 +6,7 @@ import NavBar from '../components/Navbar/NavBar';
 import CheckoutModal from '../components/modals/ConfirmPurchase';
 import { useState } from 'react';
 import type { CheckoutStep } from '../types/types';
-import { createOrder } from '../api/cartApi';
+import { createOrder } from '../api/orderApi';
 import { useAuth } from '../context/AuthContext';
 import { Container, useAccordionButton } from 'react-bootstrap';
 
