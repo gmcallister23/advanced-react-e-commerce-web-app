@@ -3,30 +3,33 @@ import { onAuthStateChanged, type User } from "firebase/auth";
 import { auth } from '../lib/firebaseConfig';
 
 interface AuthContextType { 
-    user: null | User,
-    setUser: (user: User) => void;
+    //user: null | User,
+    user: User | null,
+    //setUser: (user: User) => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
     user: null,
-    setUser: (user: User) => {}
+    //setUser: (user: User) => {}
 })
 
 export const AuthProvider = ({children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user);
-            } else {
-                setUser(null);
-            }
+        const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+
+            setUser(firebaseUser);
+        //     if (user) {
+        //         setUser(user);
+        //     } else {
+        //         setUser(null);
+        //     }
         });
         return () => unsubscribe();
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, setUser }}>
+        <AuthContext.Provider value={{ user }}>
             {children}
         </AuthContext.Provider>
     );

@@ -4,6 +4,8 @@ import { subscribeToCart } from '../api/cartApi';
 import { setCart } from '../cart/cartSlice';
 
 export const useCartSync = (userId?: string) => {
+
+    console.log('SYNC USER', userId);
     const dispatch = useDispatch();
     const unsubRef = useRef<null | (() => void)>(null);
 
