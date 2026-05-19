@@ -4,6 +4,7 @@ import { updateProfile, deleteUser } from 'firebase/auth';
 
 import NavBar from "../components/Navbar/NavBar";
 import { getUserOrders } from "../api/orderApi";
+import type { Order, OrderItem } from '../types/order'
 
 const Profile: React.FC = () => {
 
@@ -12,7 +13,7 @@ const Profile: React.FC = () => {
     const [email, setEmail] = useState(user?.email || '');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-    const [orders, setOrders] = useState<any[]>([]);
+    const [orders, setOrders] = useState<Order[]>([]);
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -84,15 +85,15 @@ const Profile: React.FC = () => {
 
             <h2>Your Orders</h2>
             
-            {orders.map(order => (
-                <div key={order.id} className='border p-3 mb-2'>
-                    <p>Order ID: {order.id}</p>
+            {orders.map((order) => (
+                <div key={order.orderId} className='border p-3 mb-2'>
+                    <p>Order ID: {order.orderId}</p>
                     <p>Total: ${order.total}</p>
                     <p>Status: {order.status}</p>
 
                     <ul>
-                        {order.items.map((items: any, idx: number) => (
-                            <li key={idx}>
+                        {order.items.map((items: OrderItem) => (
+                            <li key={items.productId}>
                                 {items.title} x {items.quantity}
                             </li>
                         ))}
