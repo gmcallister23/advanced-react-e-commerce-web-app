@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { updateProfile, deleteUser } from 'firebase/auth';
 
 import NavBar from "../components/Navbar/NavBar";
+import { getUserOrders } from "../api/orderApi";
 
 const Profile: React.FC = () => {
 
@@ -11,6 +12,17 @@ const Profile: React.FC = () => {
     const [email, setEmail] = useState(user?.email || '');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [orders, setOrders] = useState<any[]>([]);
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            if (!user?.uid) return;
+
+            const data = await getUserOrders(user.uid);
+            setOrders(data);
+        }
+        fetchOrders();
+    }, [user]);
 
     const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -65,10 +77,29 @@ const Profile: React.FC = () => {
                 />
                 <button type='submit'>Update Profile</button>
                 <div>
-                    <button onClick={handleDeleteAccount}>Delete Account</button>
+                    <button type='button' onClick={handleDeleteAccount}>Delete Account</button>
                 </div>
 
             </form>
+
+            <h2>Your Orders</h2>
+            
+            {orders.map(order => (
+                <div key={order.id} className='border p-3 mb-2'>
+                    <p>Order ID: {order.id}</p>
+                    <p>Total: ${order.total}</p>
+                    <p>Status: {order.status}</p>
+
+                    <ul>
+                        {order.items.map((items: any, idx: number) => (
+                            <li key={idx}>
+                                {items.title} x {items.quantity}
+                            </li>
+                        ))}
+                    </ul>
+
+                </div>
+            ))}
         </div>
     );
 
