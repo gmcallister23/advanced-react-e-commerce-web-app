@@ -16,14 +16,16 @@ const Profile: React.FC = () => {
     const [orders, setOrders] = useState<Order[]>([]);
 
     useEffect(() => {
+        if (!user?.uid) return;
+
         const fetchOrders = async () => {
-            if (!user?.uid) return;
+            
 
             const data = await getUserOrders(user.uid);
             setOrders(data);
         }
         fetchOrders();
-    }, [user]);
+    }, [user?.uid]);
 
     const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

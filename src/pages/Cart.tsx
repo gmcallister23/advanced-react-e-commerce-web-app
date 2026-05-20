@@ -10,6 +10,7 @@ import { createOrder } from '../api/orderApi';
 import { useAuth } from '../context/AuthContext';
 import { clearUserCart } from '../api/cartApi';
 import { clearCart } from '../cart/cartSlice';
+import { ProductProvider } from '../context/ProductContext';
 
 
 
@@ -48,8 +49,8 @@ const Cart = () => {
             userId, items: items.map(item => ({
                 productId: item.productId,
                 title: item.title,
-                description: item.description,
-                image: item.image,
+                description: item.description ?? '',
+                image: item.image ?? '',
                 price: item.price,
                 quantity: item.quantity,
             })), total,

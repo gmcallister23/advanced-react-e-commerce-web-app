@@ -20,7 +20,8 @@ const ProductCard: React.FC<{product: Product}> = ({product}) => {
     productId: product.id,
     title: product.title,
     price: product.price,
-    image: product.image,
+    image: product.image ?? '',
+    description: product.image ?? '',
     quantity: 1,
 
   })

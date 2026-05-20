@@ -47,7 +47,12 @@ export const addItem = async (
         });
     } else {
         await setDoc(itemRef, {
-            ...item, quantity: 1,
+            productId: item.productId,
+            title: item.title,
+            price: item.price,
+            image: item.image ?? '',
+            description: item.description ?? '',
+            quantity: 1,
         });
     };
 };

@@ -9,6 +9,8 @@ export const createOrder = async (orderData: {
         title: string,
         price: number;
         quantity: number;
+        image: string;
+        description: string;
     } [],
     total: number;
 }) => {
@@ -35,11 +37,29 @@ export const getUserOrders = async (userId: string): Promise<Order[]> => {
     )
 
     const snapshot = await getDocs(q);
-
-    return snapshot.docs.map(doc => ({
+    
+    return snapshot.docs.map((doc) => {
+        
+        const data = doc.data();
+        
+        return { 
         orderId: doc.id,
-        ...doc.data(),
-    })) as Order [];
+        userId: data.userId,
+        total: data.total,
+        status: data.status,
+        createdAt: data.createdAt,
+
+        items: Array.isArray(data.items) ?
+        data.items.map((item: any) => ({
+            productId: item.productId,
+            title: item.title,
+            price: item.price,
+            quantity: item.quantity,
+            image: item.image ?? '',
+            description: item.description ?? '',
+        })) : []
+        }
+    });
 }
 
 export const getOrderById = async (orderId: string) => {

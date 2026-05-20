@@ -8,19 +8,21 @@ const OrderDetails = ({ order }: Props) => {
 
     console.log('RENDER ORDER', order);
 
+    const items = order.items ?? [];
+
     return (
         <div>
             <h2>Order #{order.orderId}</h2>
 
-            {order.items.map(item => (
+            {items.map(item => (
                 <div key={item.productId}>
-                    {/*{item.image && (
-                    <img src={item.image} />
-                    )} */}
+                    {item.image && (
+                    <img style={{width: 150}}src={item.image} />
+                    )} 
                     <h3>{item.title}</h3>
-                    {/*{item.description && (
+                    {item.description && (
                     <p>{item.description}</p>
-                    )} */}
+                    )}
                     <p>Qty: {item.quantity}</p>
                     <p>${item.price}</p>
                 </div>    
