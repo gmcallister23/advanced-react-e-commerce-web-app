@@ -84,7 +84,7 @@ export const decrementQuantity = async (userId: string, productId: string) => {
 }
 
 export const clearUserCart = async (userId: string) => {
-    const q = query(collection(db, 'cart'), where('userId', '==', userId));
+    const q = query(collection(db, 'carts', userId, 'items'));
     const snapshot = await getDocs(q);
 
     const deletePromises = snapshot.docs.map(doc => deleteDoc(doc.ref));
