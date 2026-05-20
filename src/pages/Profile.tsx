@@ -90,6 +90,7 @@ const Profile: React.FC = () => {
                     <p>Order ID: {order.orderId}</p>
                     <p>Total: ${order.total}</p>
                     <p>Status: {order.status}</p>
+                    <p>Date Ordered: {order.createdAt.toDate().toLocaleDateString()}</p>
 
                     <ul>
                         {order.items.map((items: OrderItem) => (
