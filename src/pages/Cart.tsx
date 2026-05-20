@@ -45,7 +45,14 @@ const Cart = () => {
         }
 
         await createOrder({
-            userId, items, total,
+            userId, items: items.map(item => ({
+                productId: item.productId,
+                title: item.title,
+                description: item.description,
+                image: item.image,
+                price: item.price,
+                quantity: item.quantity,
+            })), total,
         });
 
         await clearUserCart(userId);

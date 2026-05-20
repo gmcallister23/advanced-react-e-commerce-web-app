@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { updateProfile, deleteUser } from 'firebase/auth';
-
+import { Link } from "react-router-dom";
 import NavBar from "../components/Navbar/NavBar";
 import { getUserOrders } from "../api/orderApi";
 import type { Order, OrderItem } from '../types/order'
@@ -84,7 +84,8 @@ const Profile: React.FC = () => {
             </form>
 
             <h2>Your Orders</h2>
-            
+            <div>
+                
             {orders.map((order) => (
                 <div key={order.orderId} className='border p-3 mb-2'>
                     <p>Order ID: {order.orderId}</p>
@@ -100,8 +101,11 @@ const Profile: React.FC = () => {
                         ))}
                     </ul>
 
+                <Link to={`/orderdetails/${order.orderId}`}>View Details</Link>    
+
                 </div>
             ))}
+            </div>
         </div>
     );
 

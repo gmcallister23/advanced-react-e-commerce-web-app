@@ -1,4 +1,4 @@
-import { addDoc, collection, serverTimestamp, where, query, getDocs } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp, where, query, getDocs, doc, getDoc } from "firebase/firestore";
 import { db } from '../lib/firebaseConfig';
 import type { Order } from '../types/order';
 
@@ -40,4 +40,19 @@ export const getUserOrders = async (userId: string): Promise<Order[]> => {
         orderId: doc.id,
         ...doc.data(),
     })) as Order [];
+}
+
+export const getOrderById = async (orderId: string) => {
+    const docRef = doc(db, 'orders', orderId);
+
+    const snapshot = await getDoc(docRef);
+
+    if(!snapshot.exists()) {
+        throw new Error('Order not found');
+    }
+
+    return{
+        orderId: snapshot.id,
+        ...snapshot.data()
+    }
 }
