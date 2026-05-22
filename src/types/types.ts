@@ -33,3 +33,20 @@ export type CheckoutStep =
 
 
 export type Category = string;
+
+export type UserProfile = {
+    uid: string;
+    email: string;
+    displayName: string;
+
+    address?: {
+        street?: string;
+        city?: string;
+        state?: string;
+        zipCode?: string;
+    };
+
+    dateOfBirth?: string;
+
+    profileComplete?: boolean;
+}

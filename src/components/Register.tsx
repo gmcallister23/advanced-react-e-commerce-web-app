@@ -2,6 +2,7 @@ import { useState, FormEvent } from 'react';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../lib/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
+import { createUserProfile } from '../api/userApi';
 
 const Register = () => {
     const [email, setEmail] = useState<string>('');
@@ -17,9 +18,14 @@ const Register = () => {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password)
             alert('Registration Successful');
 
+            const user = userCredential.user;
+
             await updateProfile(userCredential.user, {
                 displayName: displayName,
             });
+
+            await createUserProfile(user);
+
             navigate('/profile');
         } catch (err: any) {
             setError(err.message)

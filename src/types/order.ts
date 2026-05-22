@@ -19,3 +19,4 @@ export type Order = {
     status: string;
     createdAt: Timestamp;
 }
+

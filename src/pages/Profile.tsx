@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import NavBar from "../components/Navbar/NavBar";
 import { getUserOrders } from "../api/orderApi";
 import type { Order, OrderItem } from '../types/order'
+import ProfileInfo from "../components/ProfileInfo";
+import type { UserProfile } from "../types/types";
+import { getUserProfile } from "../api/userApi";
 
 const Profile: React.FC = () => {
 
@@ -14,17 +17,33 @@ const Profile: React.FC = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [orders, setOrders] = useState<Order[]>([]);
+    const [profile, setProfile] = useState<UserProfile | null>(null);
+
+    // useEffect(() => {
+    //     if (!user?.uid) return;
+
+    //     const fetchOrders = async () => {
+            
+
+    //         const data = await getUserOrders(user.uid);
+    //         setOrders(data);
+    //     }
+    //     fetchOrders();
+    // }, [user?.uid]);
 
     useEffect(() => {
         if (!user?.uid) return;
 
-        const fetchOrders = async () => {
-            
+        const fetchData = async () => {
+            const [ordersData, profileData] = await Promise.all([
+                getUserOrders(user.uid),
+                getUserProfile(user.uid)
+            ]);
 
-            const data = await getUserOrders(user.uid);
-            setOrders(data);
+            setOrders(ordersData);
+            setProfile(profileData);
         }
-        fetchOrders();
+        fetchData();
     }, [user?.uid]);
 
     const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -58,32 +77,18 @@ const Profile: React.FC = () => {
         }
     }
 
+    if (!user) return null;
+    if (!profile) return <p>Loading...</p>
+
     return (
         <div className="pt-5">
             <nav>
               <NavBar />  
             </nav>
             <h1>Profile</h1>
-            <form onSubmit={handleUpdateProfile}>
-                <input
-                type='text'
-                value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
-                placeholder='Name'
-                />
-                <input
-                type='email'
-                disabled={true}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder='email'
-                />
-                <button type='submit'>Update Profile</button>
-                <div>
-                    <button type='button' onClick={handleDeleteAccount}>Delete Account</button>
-                </div>
 
-            </form>
+            <ProfileInfo profile={profile} user={user}/>
+
 
             <h2>Your Orders</h2>
             <div>
