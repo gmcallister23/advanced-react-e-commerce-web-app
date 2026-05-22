@@ -1,4 +1,4 @@
-import { addDoc, collection, serverTimestamp, where, query, getDocs, doc, getDoc } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp, where, query, getDocs, doc, getDoc, orderBy } from "firebase/firestore";
 import { db } from '../lib/firebaseConfig';
 import type { Order } from '../types/order';
 
@@ -33,7 +33,8 @@ export const createOrder = async (orderData: {
 export const getUserOrders = async (userId: string): Promise<Order[]> => {
     const q = query(
         collection(db, 'orders'),
-        where('userId', '==', userId)
+        where('userId', '==', userId),
+        orderBy('createdAt', 'desc')
     )
 
     const snapshot = await getDocs(q);
