@@ -15,12 +15,13 @@ export const createUserProfile = async (user: any) => {
     });
 };
 
-export const getUserProfile = async (uid: string): Promise<UserProfile> => {
+export const getUserProfile = async (uid: string): Promise<UserProfile | null> => {
     const ref = doc(db, 'users', uid);
     const snapshot = await getDoc(ref);
 
     if (!snapshot.exists()) {
-        throw new Error('User profile not found');
+        return null;
+        //throw new Error('User profile not found');
     }
 
     return {

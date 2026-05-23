@@ -18,6 +18,7 @@ const Profile: React.FC = () => {
     const [success, setSuccess] = useState('');
     const [orders, setOrders] = useState<Order[]>([]);
     const [profile, setProfile] = useState<UserProfile | null>(null);
+    const [loading, setLoading] = useState(true);
 
     // useEffect(() => {
     //     if (!user?.uid) return;
@@ -42,6 +43,8 @@ const Profile: React.FC = () => {
 
             setOrders(ordersData);
             setProfile(profileData);
+
+            setLoading(false);
         }
         fetchData();
     }, [user?.uid]);
@@ -60,7 +63,9 @@ const Profile: React.FC = () => {
     }
 
     if (!user) return null;
-    if (!profile) return <p>Loading...</p>
+
+    //if (!profile) return <p>Loading...</p>
+    if (loading) return <p>Loading...</p>
 
     return (
         <div className="pt-5">
@@ -68,8 +73,15 @@ const Profile: React.FC = () => {
               <NavBar />  
             </nav>
             <h1>Profile</h1>
+            <h2>Welcome {user.displayName}</h2>
+
+            {profile ? (
 
             <ProfileInfo profile={profile} user={user}/>
+
+            ) : (
+                <p>No profile created yet.</p>
+            )}
 
             <Link to='/update-profile' className="btn btn-primary">Update Profile</Link>
 

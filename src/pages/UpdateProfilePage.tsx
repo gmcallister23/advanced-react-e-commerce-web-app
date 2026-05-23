@@ -9,7 +9,7 @@ const EditProfilePage = () => {
     const { user } = useAuth();
 
     const [profile, setProfile] = useState<UserProfile | null> (null);
-    const [displayName, setDisplayName] = useState(user?.displayName || '');
+    const [displayName, setDisplayName] = useState<string>('');
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [street, setStreet] = useState('');
     const [city, setCity] = useState('');
@@ -17,16 +17,30 @@ const EditProfilePage = () => {
     const [zipCode, setZipCode] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-    const [email, setEmail] = useState(user?.email || '');
+    const [email, setEmail] = useState<string>('');
+    const [loading, setLoading] = useState(true);
  
     useEffect(() => {
 
         if (!user?.uid) return;
 
+        if (user?.displayName) {
+            setDisplayName(user.displayName)
+        }
+        if (user?.email) {
+            setEmail(user.email)
+        }
+
         const fetchProfile = async () => {
 
             const data = await getUserProfile(user.uid);
+
+            if (!data) {
+                setLoading(false);
+                return;
+            }
             setProfile(data);
+            setLoading(false);
 
             setDateOfBirth(data.dateOfBirth ?? '');
             setStreet(data.address?.street ?? '');
@@ -40,7 +54,8 @@ const EditProfilePage = () => {
         
     }, [user?.uid]);
 
-    if (!profile) return <p>Loading...</p>
+    //if (!profile) return <p>Loading...</p>
+    if (loading) return <p>Loading...</p>
 
      const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
