@@ -28,3 +28,7 @@ export const getUserProfile = async (uid: string): Promise<UserProfile> => {
         ...snapshot.data(),
     } as UserProfile;
 };
+
+export const updateUserProfile = async (uid: string, data: Partial<UserProfile>) => {
+    await setDoc(doc(db, 'users', uid), data, {merge: true} );
+};

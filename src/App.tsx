@@ -20,6 +20,7 @@ import { setCart } from "./cart/cartSlice";
 import { useAuth } from "./context/AuthContext";
 import { useCartSync } from "./hooks/useCartSync";
 import OrderDetailsPage from "./pages/OrderDetailsPage";
+import EditProfilePage from "./pages/UpdateProfilePage";
 
 
 const client = new QueryClient()
@@ -51,6 +52,7 @@ function App() {
               <Route path='/logout' element = {<Logout />} />
               <Route path='/edit/:id' element = {<EditProductForm />} />
               <Route path='/orderdetails/:orderId' element = {<OrderDetailsPage />} />
+              <Route path='/update-profile' element = {<EditProfilePage />} />
             </Routes>
             {/*</Navbar>*/}
           </BrowserRouter>

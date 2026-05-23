@@ -46,24 +46,6 @@ const Profile: React.FC = () => {
         fetchData();
     }, [user?.uid]);
 
-    const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setError('');
-        setSuccess('');
-        if(!user) {
-            setError('User not found');
-            return;
-        }
-        try {
-            await updateProfile(user, {
-                displayName: displayName,
-            });
-            setSuccess('Profile updated successfully');
-        } catch (error: any) {
-            setError(error.message)
-        }
-    };
-
     const handleDeleteAccount = async () => {
         try {
             if (!user) {
@@ -89,6 +71,9 @@ const Profile: React.FC = () => {
 
             <ProfileInfo profile={profile} user={user}/>
 
+            <Link to='/update-profile' className="btn btn-primary">Update Profile</Link>
+
+            <button className='btn btn-danger' onClick={handleDeleteAccount}>Delete Account</button>
 
             <h2>Your Orders</h2>
             <div>
