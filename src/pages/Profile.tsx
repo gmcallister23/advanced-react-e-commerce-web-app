@@ -8,6 +8,7 @@ import type { Order, OrderItem } from '../types/order'
 import ProfileInfo from "../components/ProfileInfo";
 import type { UserProfile } from "../types/types";
 import { getUserProfile } from "../api/userApi";
+import { useNavigate } from "react-router-dom";
 
 const Profile: React.FC = () => {
 
@@ -19,6 +20,7 @@ const Profile: React.FC = () => {
     const [orders, setOrders] = useState<Order[]>([]);
     const [profile, setProfile] = useState<UserProfile | null>(null);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     // useEffect(() => {
     //     if (!user?.uid) return;
@@ -60,6 +62,8 @@ const Profile: React.FC = () => {
         } catch (error: any) {
             setError(error.message)
         }
+
+        navigate('/');
     }
 
     if (!user) return null;
