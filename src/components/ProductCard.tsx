@@ -7,8 +7,7 @@ import { addItem } from '../api/cartApi';
 import { useAuth } from '../context/AuthContext';
 
 
-
-const ProductCard: React.FC<{product: Product}> = ({product}) => {
+const ProductCard: React.FC<{product: Product, footer?: React.ReactNode}> = ({product, footer}) => {
 
   //const  dispatch = useDispatch();
   
@@ -38,7 +37,7 @@ const ProductCard: React.FC<{product: Product}> = ({product}) => {
   
 
   return (
-    <div className="col-12 col-sm-6 col-lg-4">
+    
     <div className="d-flex flex-column align-items-center p-2 shadow-sm border rounded bg-secondary-subtle h-100 overflow-auto">
         <h3>{product.title}</h3>
         <img src={product.image || '/placeholder.png'}  alt={product.title} className="w-25 "/>
@@ -49,8 +48,11 @@ const ProductCard: React.FC<{product: Product}> = ({product}) => {
         <button className="btn bg-success-subtle border-black shadow-md mt-auto"onClick={() => {console.log("Added to cart", product);
         console.log("CART ITEM BEING SENT", toCartItem(product))
         handleAddItem();}}>Add to Cart</button>
+        <div>
+          {footer}
+        </div>
     </div>
-    </div>
+    
     
   )
 }

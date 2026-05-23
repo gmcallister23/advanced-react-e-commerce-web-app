@@ -68,10 +68,12 @@ const Profile: React.FC = () => {
     if (loading) return <p>Loading...</p>
 
     return (
-        <div className="pt-5">
+        <div className="bg-warning-subtle pt-5 px-3 vh-100">
             <nav>
               <NavBar />  
             </nav>
+            
+            <div className='pt-5 flex-columng align-items-center text-center'>
             <h1>Profile</h1>
             <h2>Welcome {user.displayName}</h2>
 
@@ -86,12 +88,13 @@ const Profile: React.FC = () => {
             <Link to='/update-profile' className="btn btn-primary">Update Profile</Link>
 
             <button className='btn btn-danger' onClick={handleDeleteAccount}>Delete Account</button>
-
-            <h2>Your Orders</h2>
-            <div>
+            </div>
+            <h2 className='text-center p-2'>Your Orders</h2>
+            <div className='row g-3'>
                 
             {orders.map((order) => (
-                <div key={order.orderId} className='border p-3 mb-2'>
+                <div key={order.orderId} className='col-12 cold-md-6 col-lg-4'>
+                    <div className='bg-success-subtle border rounded p-3 mb-2 h-100'>
                     <p>Order ID: {order.orderId}</p>
                     <p>Total: ${order.total}</p>
                     <p>Status: {order.status}</p>
@@ -108,7 +111,9 @@ const Profile: React.FC = () => {
                 <Link to={`/orderdetails/${order.orderId}`}>View Details</Link>    
 
                 </div>
+                </div>
             ))}
+            
             </div>
         </div>
     );

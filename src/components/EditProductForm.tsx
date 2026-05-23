@@ -11,6 +11,7 @@ import NavBar from './Navbar/NavBar';
 
 
 
+
 const UpdateProduct = () => {
 
     const { id: productId } = useParams();

@@ -6,6 +6,7 @@ import { db } from '../lib/firebaseConfig';
 import type { ProductInput } from "../types/types";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '../lib/firebaseConfig';
+import NavBar from "./Navbar/NavBar";
 
 const AddProduct = () => {
 
@@ -96,8 +97,13 @@ const AddProduct = () => {
 
     return (
         <div>
-            <Container>
-                <h2>Add Product</h2>
+
+            <nav className='pt-5'>
+                <NavBar />
+            </nav>
+
+            <Container className='bg-secondary-subtle p-3 border rounded border-black'>
+                <h2 className='text-center'>Add Product</h2>
                 {submitted && <Alert variant='success' dismissible>{createdTitle} created successfully!</Alert>}
                 {error && <Alert variant='danger'>{error}</Alert>}
 

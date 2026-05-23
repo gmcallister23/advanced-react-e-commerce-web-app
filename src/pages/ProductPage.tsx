@@ -3,10 +3,8 @@ import AddProduct from "../components/AddProduct";
 
 const ProductPage = () => {
     return (
-        <div>
-            <nav>
-                <NavBar />
-            </nav>
+        <div className='vh-100 pt-3 bg-warning-subtle'>
+            
 
             <AddProduct />
         </div>

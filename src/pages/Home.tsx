@@ -48,7 +48,7 @@ const Home: React.FC = () => {
 
     return (
         
-        <div className="bg-warning-subtle pt-5">
+        <div className="bg-warning-subtle pt-5 vh-100">
             
         <nav>
             <NavBar />
@@ -64,8 +64,11 @@ const Home: React.FC = () => {
             <div className="container py-3">
                 <div className="row g-4 justify-content-center">
                 {filteredProducts.map((product: Product) => (
+                <div className='col-12 cold-sm-6 col-lg-4'>
                 <ProductCard product={product} key={product.id} />
+                </div>
                 ))}
+                
             </div>
             </div>
      </div>

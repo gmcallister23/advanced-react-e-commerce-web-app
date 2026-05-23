@@ -4,12 +4,12 @@ import Register from '../components/Register';
 
 const RegisterPage = () => {
   return (
-    <div>
+    <div className='pt-5'>
         
         <nav>
             <NavBar />
         </nav>
-
+        
         <Register />
     </div>
   )

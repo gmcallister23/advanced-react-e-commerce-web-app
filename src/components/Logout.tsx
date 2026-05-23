@@ -25,7 +25,7 @@ const Logout = () => {
     return (
         <div>
             <h2>Are you sure you want to log out of your session?</h2>
-            <button onClick={handleLogout}>Logout</button>
+            <button className='btn btn-danger' onClick={handleLogout}>Logout</button>
         </div>
     )
 }

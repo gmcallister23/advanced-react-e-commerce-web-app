@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../lib/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 import { createUserProfile } from '../api/userApi';
+import { Container, Form } from 'react-bootstrap';
 
 const Register = () => {
     const [email, setEmail] = useState<string>('');
@@ -33,30 +34,42 @@ const Register = () => {
     };
 
     return (
-        <div>
-            <h1>Register</h1>
-            <form onSubmit={handleRegister}>
-            <input
+        <div className='pt-5 bg-warning-subtle vh-100'>
+            <Container>
+            <h2>Register</h2>
+            <Form onSubmit={handleRegister}>
+            <Form.Group>
+            <Form.Label>Email</Form.Label>
+            <Form.Control
             type='email'
             placeholder='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             />
-            <input
+            </Form.Group>
+            <Form.Group>
+            <Form.Label>Name</Form.Label>
+            <Form.Control
             type='text'
             placeholder='Name'
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
             />
-            <input
+            </Form.Group>
+            <Form.Group>
+            <Form.Label>Password</Form.Label>
+            <Form.Control
             type='password'
             placeholder='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             />
+            </Form.Group>
             <button type='submit'>Register</button>
             {error && <p>{error}</p>}
-            </form>
+
+            </Form>
+            </Container>
         </div>
        
     )

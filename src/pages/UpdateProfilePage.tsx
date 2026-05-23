@@ -5,6 +5,7 @@ import type { UserProfile } from "../types/types";
 import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/Navbar/NavBar";
+import {Container, Form} from 'react-bootstrap';
 
 const EditProfilePage = () => {
     
@@ -99,56 +100,82 @@ const EditProfilePage = () => {
 
     return (
         
-        <div>
-
+        <div className='bg-warning-subtle vh-100 pt-5'>
+            <nav>
             <NavBar />
+            </nav>
 
-            <form onSubmit={handleUpdateProfile}>
-                <input
+            <Container>
+                <h2 className='text-center pt-3'>Update Profile</h2>
+            <Form onSubmit={handleUpdateProfile}>
+                <Form.Group>
+                <Form.Label>Display Name</Form.Label>
+                <Form.Control
                 type='text'
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 placeholder='Name'
                 />
-                <input
+                </Form.Group>
+                <Form.Group>
+                <Form.Label>Email</Form.Label>
+                <Form.Control
                 type='email'
                 disabled={true}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder='email'
                 />
-                <input
+                </Form.Group>
+                <Form.Group>
+                <Form.Label>Date of Birth</Form.Label>
+                <Form.Control
                 type='text'
                 value={dateOfBirth}
                 onChange={(e) => setDateOfBirth(e.target.value)}
                 placeholder='Date of Birth'
                 />
-                <input
+                </Form.Group>
+                <Form.Group>
+                <Form.Label>Street</Form.Label>
+                <Form.Control
                 type='text'
                 value={street}
                 onChange={(e) => setStreet(e.target.value)}
                 placeholder='Street'
                 />
-                <input
+                </Form.Group>
+                <Form.Group>
+                <Form.Label>City</Form.Label>
+                <Form.Control
                 type='text'
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 placeholder='City'
                 />
-                <input
+                </Form.Group>
+                <Form.Group>
+                <Form.Label>State</Form.Label>
+                <Form.Control
                 type='text'
                 value={state}
                 onChange={(e) => setState(e.target.value)}
                 placeholder='State'
                 />
-                <input
+                </Form.Group>
+                <Form.Group>
+                <Form.Label>Zip Code</Form.Label>
+                <Form.Control
                 type='text'
                 value={zipCode}
                 onChange={(e) => setZipCode(e.target.value)}
                 placeholder='Zip Code'
                 />
-                <button type='submit'>Update Profile</button>
-            </form>
+                </Form.Group>
+                <button className='btn btn-success' type='submit'>Update Profile</button>
+            </Form>
+
+            </Container>
         </div>
     )
 
