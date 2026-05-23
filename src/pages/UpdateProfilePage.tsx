@@ -3,6 +3,8 @@ import { useAuth } from "../context/AuthContext";
 import { getUserProfile, updateUserProfile } from "../api/userApi";
 import type { UserProfile } from "../types/types";
 import { updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import NavBar from "../components/Navbar/NavBar";
 
 const EditProfilePage = () => {
     
@@ -19,7 +21,9 @@ const EditProfilePage = () => {
     const [success, setSuccess] = useState('');
     const [email, setEmail] = useState<string>('');
     const [loading, setLoading] = useState(true);
- 
+    
+    const navigate = useNavigate();
+    
     useEffect(() => {
 
         if (!user?.uid) return;
@@ -30,7 +34,7 @@ const EditProfilePage = () => {
         if (user?.email) {
             setEmail(user.email)
         }
-
+        
         const fetchProfile = async () => {
 
             const data = await getUserProfile(user.uid);
@@ -57,7 +61,10 @@ const EditProfilePage = () => {
     //if (!profile) return <p>Loading...</p>
     if (loading) return <p>Loading...</p>
 
-     const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
+    
+
+
+    const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             setError('');
             setSuccess('');
@@ -79,13 +86,23 @@ const EditProfilePage = () => {
                     }
                 });
                 setSuccess('Profile updated successfully');
+
+                navigate ('/profile');
+                
             } catch (error: any) {
                 setError(error.message)
             }
+
+
+
         };
 
     return (
+        
         <div>
+
+            <NavBar />
+
             <form onSubmit={handleUpdateProfile}>
                 <input
                 type='text'
