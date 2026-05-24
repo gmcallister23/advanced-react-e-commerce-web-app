@@ -9,6 +9,8 @@ import ProfileInfo from "../components/ProfileInfo";
 import type { UserProfile } from "../types/types";
 import { getUserProfile } from "../api/userApi";
 import { useNavigate } from "react-router-dom";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../lib/firebaseConfig";
 
 const Profile: React.FC = () => {
 
@@ -57,6 +59,10 @@ const Profile: React.FC = () => {
                 setError('User not found');
                 return;
             }
+            //deletes firestore profile
+            await deleteDoc(doc(db, 'users', user.uid));
+
+            //deletes firebase auth account
             await deleteUser(user);
             setSuccess('Account deleted successfully');
         } catch (error: any) {
@@ -72,7 +78,7 @@ const Profile: React.FC = () => {
     if (loading) return <p>Loading...</p>
 
     return (
-        <div className="bg-warning-subtle pt-5 px-3 vh-100">
+        <div className="bg-warning-subtle pt-5 px-3">
             <nav>
               <NavBar />  
             </nav>
