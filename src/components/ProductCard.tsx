@@ -1,13 +1,18 @@
 import type { Product } from '../types/types';
-import { Rating } from '@smastrom/react-rating';
-import { useDispatch, useSelector } from 'react-redux';
+//import { Rating } from '@smastrom/react-rating';
+//import { useDispatch, useSelector } from 'react-redux';
 //import { addItem } from '../cart/cartSlice';
 import type { CartItem } from '../types/types';
 import { addItem } from '../api/cartApi';
 import { useAuth } from '../context/AuthContext';
 
 
-const ProductCard: React.FC<{product: Product, footer?: React.ReactNode}> = ({product, footer}) => {
+type Props = {
+  product: Product;
+  footer?: React.ReactNode;
+}
+
+const ProductCard = ({product, footer}: Props) => {
 
   //const  dispatch = useDispatch();
   

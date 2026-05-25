@@ -1,5 +1,5 @@
 import type { CartItem } from "../types/types";
-import { addDoc, collection, getDoc, getDocs, where, query, deleteDoc, doc, updateDoc, increment, setDoc, onSnapshot, serverTimestamp} from "firebase/firestore";
+import { collection, getDoc, getDocs, query, deleteDoc, doc, updateDoc, increment, setDoc, onSnapshot } from "firebase/firestore";
 import { db } from '../lib/firebaseConfig';
 
 let activeUnsub: null | (() => void) = null;
