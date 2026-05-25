@@ -48,7 +48,7 @@ const Home: React.FC = () => {
 
     return (
         
-        <div className="bg-warning-subtle pt-5 vh-100">
+        <div className="bg-warning-subtle pt-5 ">
             
         <nav>
             <NavBar />
