@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
 import CartItemComponent from '../components/CartItem';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/Navbar/NavBar';
 import CheckoutModal from '../components/modals/ConfirmPurchase';
 import { useState } from 'react';
@@ -10,7 +10,7 @@ import { createOrder } from '../api/orderApi';
 import { useAuth } from '../context/AuthContext';
 import { clearUserCart } from '../api/cartApi';
 import { clearCart } from '../cart/cartSlice';
-import { ProductProvider } from '../context/ProductContext';
+//import { ProductProvider } from '../context/ProductContext';
 
 
 
@@ -21,7 +21,7 @@ const Cart = () => {
     //     (state: RootState) => state.cart.totalQuantity
     // );
     
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     
     const items = useSelector((state: RootState) => state.cart.items);
     const totalQuantity = items.reduce(

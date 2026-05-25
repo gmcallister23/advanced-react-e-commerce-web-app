@@ -26,7 +26,7 @@ describe('CartItem', () => {
             price: 75,
             quantity: 2,
             description: '',
-            image: '',
+            image: 'test-image.jpg',
         }
 
         const expectedSubtotal = item.price * item.quantity;
