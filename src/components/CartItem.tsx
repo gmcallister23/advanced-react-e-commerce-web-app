@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+//import { useDispatch, useSelector } from 'react-redux';
 //import { incrementQuantity, decrementQuantity, removeItem } from '../cart/cartSlice';
 //import { useProductContext } from '../context/ProductContext';
 import type { CartItem } from '../types/types'
