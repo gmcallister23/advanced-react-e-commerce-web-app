@@ -1,3 +1,11 @@
+Updated 5/10/26:
+
+This app has been updated to feed to and receive data from Firebase/Firestrore.  All data is ran through Firebase and rendered in the app.
+
+The app now contains Authentication through Firebase and pulls cart histories from Firestore and lists them. 
+
+The app also sends and receives images from Firestore for procudt listings.
+
 This is an e-commerce app that React, Redux and Typescript.
 
 You can view products imported from Fakestopapi, add them to a cart, edit the cart and complete a simulated checkout process.
