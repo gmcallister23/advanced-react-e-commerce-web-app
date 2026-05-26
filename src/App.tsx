@@ -2,28 +2,28 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ProductProvider } from "./context/ProductContext";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+//import { ProductProvider } from "./context/ProductContext";
+//import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Cart from "./pages/Cart";
-import { AuthProvider } from "./context/AuthContext";
+//import { AuthProvider } from "./context/AuthContext";
 import Register from "./pages/RegisterPage";
 import Login from "./pages/LoginPage";
 import Logout from "./pages/LogoutPage";
-import { Navbar } from "react-bootstrap";
+//import { Navbar } from "react-bootstrap";
 import ProductPage from "./pages/ProductPage";
 import EditProductPage from "./pages/EditProductPage";
 import EditProductForm from './components/EditProductForm';
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { subscribeToCart } from "./api/cartApi";
-import { setCart } from "./cart/cartSlice";
+//import { useEffect } from "react";
+//import { useDispatch, useSelector } from "react-redux";
+//import { subscribeToCart } from "./api/cartApi";
+//import { setCart } from "./cart/cartSlice";
 import { useAuth } from "./context/AuthContext";
 import { useCartSync } from "./hooks/useCartSync";
 import OrderDetailsPage from "./pages/OrderDetailsPage";
 import EditProfilePage from "./pages/UpdateProfilePage";
 
 
-const client = new QueryClient()
+//const client = new QueryClient()
 
 
 

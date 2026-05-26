@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react'; //useState
 import ProductCard from '../components/ProductCard';
 import { Link } from 'react-router-dom';
-import type { Product, Category } from '../types/types';
+import type { Product } from '../types/types'; //Category
 import { useProductContext } from '../context/ProductContext';
 import { useQuery } from '@tanstack/react-query';
 import { fetchProducts } from '../api/api';

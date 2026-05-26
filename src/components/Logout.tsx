@@ -1,14 +1,14 @@
 
 import { signOut } from "firebase/auth";
-import { useState } from "react";
+//import { useState } from "react";
 import { auth } from "../lib/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [displayName, setDisplayName] = useState<string>('');
-    const [error, setError] = useState<string>('');
+    // const [email, setEmail] = useState<string>('');
+    // const [password, setPassword] = useState<string>('');
+    // const [displayName, setDisplayName] = useState<string>('');
+    // const [error, setError] = useState<string>('');
 
     const navigate = useNavigate();
 

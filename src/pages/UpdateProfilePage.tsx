@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { getUserProfile, updateUserProfile } from "../api/userApi";
-import type { UserProfile } from "../types/types";
+//import type { UserProfile } from "../types/types";
 import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/Navbar/NavBar";
@@ -11,7 +11,7 @@ const EditProfilePage = () => {
     
     const { user } = useAuth();
 
-    const [profile, setProfile] = useState<UserProfile | null> (null);
+    //const [profile, setProfile] = useState<UserProfile | null> (null);
     const [displayName, setDisplayName] = useState<string>('');
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [street, setStreet] = useState('');
@@ -44,7 +44,7 @@ const EditProfilePage = () => {
                 setLoading(false);
                 return;
             }
-            setProfile(data);
+            //setProfile(data);
             setLoading(false);
 
             setDateOfBirth(data.dateOfBirth ?? '');
@@ -88,8 +88,10 @@ const EditProfilePage = () => {
                 });
                 setSuccess('Profile updated successfully');
 
-                navigate ('/profile');
-                
+                setTimeout(() => {
+                    navigate ('/profile');
+                }, 800);
+
             } catch (error: any) {
                 setError(error.message)
             }
@@ -107,6 +109,19 @@ const EditProfilePage = () => {
 
             <Container>
                 <h2 className='text-center pt-3'>Update Profile</h2>
+
+                {error && (
+                    <div className='alert alert-danger mt-3'>
+                        {error}
+                    </div>
+                )}
+
+                {success && (
+                    <div className='alert alert-success mt-3'>
+                        {success}
+                    </div>
+                )}
+
             <Form onSubmit={handleUpdateProfile}>
                 <Form.Group>
                 <Form.Label>Display Name</Form.Label>

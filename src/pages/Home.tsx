@@ -1,25 +1,25 @@
-import { useEffect, useState} from 'react';
-import type { Product, Category } from '../types/types';
+import { useEffect } from 'react';  //useState
+import type { Product } from '../types/types'; //Category
 import ProductCard  from '../components/ProductCard';
 import { useProductContext } from '../context/ProductContext';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchProducts } from '../api/api';
-import { fetchCategories } from '../api/api';
+//import { fetchCategories } from '../api/api';
 import NavBar from '../components/Navbar/NavBar';
 
 const Home: React.FC = () => {
 
     
-    const navigate = useNavigate()
+    //const navigate = useNavigate()
     //const [products, setProducts] = useState<Product[]>([]);
     const {products, dispatch, selectedCategory} = useProductContext();
     
-    const { data: productsData, isLoading }  = useQuery({
+    const { data: productsData }  = useQuery({
         queryKey: ['products'],
         queryFn: fetchProducts,
 
-    });
+    }); //isLoading
 
     useEffect(() => {
         if (productsData)

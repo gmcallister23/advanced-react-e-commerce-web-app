@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import { updateProfile, deleteUser } from 'firebase/auth';
+import { deleteUser } from 'firebase/auth'; //updateProfile
 import { Link } from "react-router-dom";
 import NavBar from "../components/Navbar/NavBar";
 import { getUserOrders } from "../api/orderApi";
@@ -15,9 +15,9 @@ import { db } from "../lib/firebaseConfig";
 const Profile: React.FC = () => {
 
     const {user} = useAuth()
-    const [displayName, setDisplayName] = useState(user?.displayName|| '');
-    const [email, setEmail] = useState(user?.email || '');
-    const [error, setError] = useState('');
+    // const [displayName, setDisplayName] = useState(user?.displayName|| '');
+    // const [email, setEmail] = useState(user?.email || '');
+    const [error, setError] = useState(''); //error
     const [success, setSuccess] = useState('');
     const [orders, setOrders] = useState<Order[]>([]);
     const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -83,9 +83,21 @@ const Profile: React.FC = () => {
               <NavBar />  
             </nav>
             
-            <div className='pt-5 flex-columng align-items-center text-center'>
+            <div className='pt-5 flex-column align-items-center text-center'>
             <h1>Profile</h1>
             <h2>Welcome {user.displayName}</h2>
+
+            {error && (
+                <div className='alert alert-danger mt-3'>
+                    {error}
+                </div>
+            )}
+
+            {success && (
+                <div className='alert alert-success mt-3'>
+                    {success}
+                </div>
+            )}
 
             {profile ? (
 

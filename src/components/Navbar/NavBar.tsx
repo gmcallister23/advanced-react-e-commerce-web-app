@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '../../store/store';
 import { Link } from 'react-router-dom';
 import { fetchCategories } from '../../api/api';
-import type { Product, Category } from '../../types/types';
+import type { Category } from '../../types/types'; //Product
 import { useQuery } from '@tanstack/react-query';
 import { useProductContext } from '../../context/ProductContext';
 import { useAuth } from '../../context/AuthContext';
@@ -12,7 +12,7 @@ import "./Navbar.css";
 const NavBar = () => {
     const items = useSelector((state: RootState) => state.cart.items);
     
-    const {products, dispatch, selectedCategory} = useProductContext();
+    const { dispatch, selectedCategory} = useProductContext(); //products
 
     const totalQuantity = items.reduce(
         (sum, item) => sum + item.quantity, 0
@@ -23,14 +23,14 @@ const NavBar = () => {
         queryFn: fetchCategories,
     }); 
 
-    const getFilteredProducts = () => {
-        if(selectedCategory) {
-            return products.filter((product:Product) => product.category === selectedCategory);
-        }
-        return products;
-    };
+    // const getFilteredProducts = () => {
+    //     if(selectedCategory) {
+    //         return products.filter((product:Product) => product.category === selectedCategory);
+    //     }
+    //     return products;
+    // };
 
-    const filteredProducts = getFilteredProducts();
+    // const filteredProducts = getFilteredProducts();
     
     const { user } = useAuth();
     
