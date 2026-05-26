@@ -1,0 +1,37 @@
+name: Ecommerce App CI/CD
+
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      #Step 1: Checkout the code
+      - name: Checkout code
+        uses: action/checkout@v2
+
+      #Step 2: Setup Node.js
+      - name: Set up Node.js
+        uses: action/setup-node@v3
+        with: 
+          node-version: '24'
+
+      #Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      #Step 4: Run Tests
+      - name: Run tests
+        run: npm test
+
+      #Step 5: Build React app
+      - name: Build React App
+        run: npm run build
+      
