@@ -1,3 +1,10 @@
+Updated 5/26/26:
+This e-commerce app has been updated to include components tests  - 2 unit tests and an integration test.  
+
+The app now includes full CI/CD implementation as well.  It is connected through github's workflow pipelines and is deployed through Vercel.
+
+The tests determine if new updates can are ready for production, if the code passes the tests, it is pushed to github, if it passes github, it is pused to Vercel for deployment.
+
 Updated 5/10/26:
 
 This app has been updated to feed to and receive data from Firebase/Firestrore.  All data is ran through Firebase and rendered in the app.
